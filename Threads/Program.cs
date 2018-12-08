@@ -83,7 +83,16 @@ namespace Threads
             string word3 = "!";
             ArrayList list =
                 new ArrayList() { number, word1, word2, word3};
-            t1.Start(list);
+
+            Dictionary<String, Object> dictionary =
+                new Dictionary<String, Object>() {
+                    { "number", number }
+                    , { "word1", word1 }
+                    , { "word2", word2 }
+                    , { "word3", word3 }
+                };
+
+            t1.Start(dictionary);
             //Thread.Sleep(10);
             //w1.isActive = false;
             Console.WriteLine("The End");

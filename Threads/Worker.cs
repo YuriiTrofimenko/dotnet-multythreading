@@ -35,17 +35,18 @@ namespace Threads
         public void doParamWork(Object args)
         {
             //int number = (int)args;
-            ArrayList list = (ArrayList)args;
-            for (int i = 0; i < (int)list[0]; i++)
+            //ArrayList list = (ArrayList)args;
+            Dictionary<String, Object> dictionary = (Dictionary<String, Object>)args;
+            for (int i = 0; i < (int)dictionary["number"]; i++)
             {
                 if (isActive)
                 {
                     Thread.Sleep(1);
-                    Console.WriteLine(list[1]);
+                    Console.WriteLine(dictionary["word1"]);
                     Thread.Sleep(1);
-                    Console.WriteLine(list[2]);
+                    Console.WriteLine(dictionary["word2"]);
                     Thread.Sleep(1);
-                    Console.WriteLine(list[3]);
+                    Console.WriteLine(dictionary["word3"]);
                 }
                 else
                 {
