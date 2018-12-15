@@ -35,11 +35,13 @@ namespace ThreadsWaitPulse
                 Monitor.Exit(data);*/
 
                 //Monitor.Enter(data);
-                //Этого ли экземпляра очередь вызывать метод из объекта data?
+                
                 lock (data)
                 {
+                    //Этого ли экземпляра очередь вызывать метод из объекта data?
                     while (data.GetState() != actionId)
                     {
+                        //Уступаем очередь
                         Monitor.Wait(data);
                     }
                     //Если да, то какой именно метод вызывать?
@@ -51,7 +53,9 @@ namespace ThreadsWaitPulse
                     {
                         data.Tac();
                     }
+                    //Оповещаем ближайший тред, что можно работать с объектом
                     Monitor.Pulse(data);
+                    //Автоматически освобождаем монитор
                 }
                 //Monitor.Exit(data);
             }
